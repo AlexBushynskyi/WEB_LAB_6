@@ -26,18 +26,27 @@ function getTopLetter(text) {
   }
   for(var i = 0; i < num_matches.length; i++){
     if (max == num_matches[i]){
-      return symbol[i];
+      array_match_sym[array_match_sym.length] = symbol[i];
     }
   }
+  return array_match_sym;
 }
 
 function assertAnswerInArray(expectedArray, actualVal, message) {
-    if(expectedArray.indexOf(actualVal) >= 0) {
-        console.log("+", message);
+  num = 0;
+  for(var i = 0; i < expectedArray.length; i++){
+    for(var j = 0; j < actualVal.length; j++){
+      if(expectedArray[i] == actualVal[j]){
+        num++;
+      }
     }
-    else {
-        console.error("-", message, "(Expected values:", expectedArray, "; Actual:", actualVal, ")");
-    }
+  }
+  if(num == expectedArray.length && num==actualVal.length) {
+      console.log("+", message);
+  }
+  else {
+      console.error("-", message, "(Expected values:", expectedArray, "; Actual:", actualVal, ")");
+  }
 }
 
 function runTask3() {
